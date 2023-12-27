@@ -12,6 +12,8 @@ pipeline{
 						steps{
 								echo "========executing Build========"
 							  sh "ls -al"
+								sh "cd src"
+								sh "ls -al"
 						}
 				}
 				stage("Test"){
