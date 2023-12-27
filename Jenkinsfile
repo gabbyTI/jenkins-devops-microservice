@@ -11,7 +11,7 @@ pipeline{
 				stage("A"){
 						steps{
 								echo "========executing A========"
-								echo "ls -al"
+							  ls -al
 						}
 						// post{
 						// 		always{
