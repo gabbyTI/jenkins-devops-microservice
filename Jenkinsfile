@@ -11,25 +11,22 @@ pipeline{
 				stage("Build"){
 						steps{
 								echo "========executing Build========"
-							  ls -al
+							  sh "ls -al"
 						}
 				}
 				stage("Test"){
 						steps{
 								echo "========executing Test========"
-							  ls -al
 						}
 				}
 				stage("Staging"){
 						steps{
 								echo "========executing Staging Deploy========"
-							  ls -al
 						}
 				}
 				stage("Production"){
 						steps{
 								echo "========executing Production Deploy========"
-							  ls -al
 						}
 				}
 		}
