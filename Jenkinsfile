@@ -56,7 +56,7 @@ pipeline{
 				stage("Push Docker image"){
 						steps{
 								script {
-									docker.withRegistry("gabelearn.azurecr.io", "azure_acr"){
+									docker.withRegistry("https://gabelearn.azurecr.io", "azure_acr"){
 										dockerImage.push();
 										dockerImage.push("latest");
 									}
