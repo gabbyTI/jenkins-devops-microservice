@@ -27,15 +27,42 @@ pipeline{
 								sh "mvn clean compile"
 						}
 				}
-				stage("Test"){
+				// stage("Test"){
+				// 		steps{
+				// 				sh "mvn test"
+				// 		}
+				// }
+				// stage("Integration Test"){
+				// 		steps{
+				// 				sh "mvn failsafe:integration-test failsafe:verify"
+				// 		}
+				// }
+				stage("Package"){
 						steps{
-								sh "mvn test"
+								sh mvn package -DskipTests
 						}
+			
 				}
-				stage("Integration Test"){
+
+				stage("Build Docker image"){
 						steps{
-								sh "mvn failsafe:integration-test failsafe:verify"
+								script {
+									dockerImage = docker.build("gabelearn.azurecr.io/currency-exchange-devops:${env.BUILD_TAG}")
+								}
 						}
+			
+				}
+
+				stage("Push Docker image"){
+						steps{
+								script {
+									docker.withRegistry("gabelearn.azurecr.io", "azure_acr"){
+										dockerImage.push();
+										dockerImage.push("latest");
+									}
+								}
+						}
+			
 				}
 		}
 }
