@@ -8,33 +8,29 @@ pipeline{
 		// 	PATH = ""
 		// }
 		stages{
-				stage("A"){
+				stage("Build"){
 						steps{
-								echo "========executing A========"
+								echo "========executing Build========"
 							  ls -al
 						}
-						// post{
-						// 		always{
-						// 				echo "========always========"
-						// 		}
-						// 		success{
-						// 				echo "========A executed successfully========"
-						// 		}
-						// 		failure{
-						// 				echo "========A execution failed========"
-						// 		}
-						// }
+				}
+				stage("Test"){
+						steps{
+								echo "========executing Test========"
+							  ls -al
+						}
+				}
+				stage("Staging"){
+						steps{
+								echo "========executing Staging Deploy========"
+							  ls -al
+						}
+				}
+				stage("Production"){
+						steps{
+								echo "========executing Production Deploy========"
+							  ls -al
+						}
 				}
 		}
-		// post{
-		// 		always{
-		// 				echo "========always========"
-		// 		}
-		// 		success{
-		// 				echo "========pipeline executed successfully ========"
-		// 		}
-		// 		failure{
-		// 				echo "========pipeline execution failed========"
-		// 		}
-		// }
 }
